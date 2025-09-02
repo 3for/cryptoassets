@@ -71,9 +71,9 @@ def get_dapps():
             print("chainId:", chain_id)
             print("contract:", contract)
             print("schema_hash:", schema_hash)
-            result["eip712_signatures"] = {}
-            result["eip712_signatures"][contract] = {}
-            result["eip712_signatures"][contract][schema_hash] = v
+            result[output] = {}
+            result[output][contract] = {}
+            result[output][contract][schema_hash] = v
 
     else:
         print(f"No matches found for {partial_key}")
