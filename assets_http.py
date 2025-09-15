@@ -57,6 +57,7 @@ def get_dapps():
     matches = fuzzy_query_json(data, partial_key)
 
     result = {}
+    result[output] = {}
     if matches:
         print("Matched results:")
         for k, v in matches.items():
@@ -71,8 +72,9 @@ def get_dapps():
             print("chainId:", chain_id)
             print("contract:", contract)
             print("schema_hash:", schema_hash)
-            result[output] = {}
-            result[output][contract] = {}
+            
+            if not result.get(output, {}).get(contract, {}):
+                result[output][contract] = {}
             result[output][contract][schema_hash] = v
 
     else:
