@@ -22,15 +22,15 @@ app = Flask(__name__)
 
 BASE_DIR = os.path.abspath("cryptoassets")  # root directory
 
-@app.route("/cryptoassets/evm/<int:chain_id>/erc20-signatures.json")
+@app.route("/cryptoassets/tvm/<int:chain_id>/trc20-signatures.json")
 def get_cryptoassets(chain_id):
     # directory path
     dir_path = os.path.join(BASE_DIR, str(chain_id))
-    file_path = os.path.join(dir_path, "erc20-signatures.json")
+    file_path = os.path.join(dir_path, "trc20-signatures.json")
     print("ZYD file_path:", file_path)
     
     if os.path.exists(file_path):
-        return send_from_directory(dir_path, "erc20-signatures.json", mimetype="application/json")
+        return send_from_directory(dir_path, "trc20-signatures.json", mimetype="application/json")
     else:
         abort(404, description=f"No JSON file for chain_id {chain_id}")
 
@@ -38,7 +38,7 @@ def get_cryptoassets(chain_id):
 def get_dapps():
     # get query args
     output = request.args.get("output")
-    version = request.args.get("eip712_signatures_version")
+    version = request.args.get("tip712_signatures_version")
     chain_id = request.args.get("chain_id")
     contracts = request.args.get("contracts")  # consider only one contract
 
